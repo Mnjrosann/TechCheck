@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TeknikServisOtomasyon
+namespace TechCheck
 {
     public partial class Dashboard : Form
     {
@@ -45,6 +45,11 @@ namespace TeknikServisOtomasyon
             txtMusteri.Clear();
             txtCihaz.Clear();
             txtAriza.Clear();
+        }
+
+        private void pnlYeniKayit_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     } // Dashboard sınıfının kapanış parantezi
 }
