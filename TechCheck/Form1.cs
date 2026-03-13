@@ -1,7 +1,6 @@
-using Microsoft.Data.SqlClient; // SQL işlemleri için
-using System;
-using System.Windows.Forms;
-using TechCheck;
+using Microsoft.Data;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace TechCheck
 {
@@ -9,66 +8,48 @@ namespace TechCheck
     {
         public Form1()
         {
-            InitializeComponent();  
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // Hata almamak için bu metodun burada durması gerekiyor.
+            InitializeComponent();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // Senin bilgisayar adın (KEREMKLKS) ve veritabanı adın
-            string connString = @"Server=KEREMKLKS\SQLEXPRESS;Database=TechCheckDB;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;";
+            if (string.IsNullOrWhiteSpace(txtUser.Text) || string.IsNullOrWhiteSpace(txtPass.Text))
+            {
+                MessageBox.Show("Lütfen alanları doldurun.");
+                return;
+            }
+
+            const string connString = @"Server=KEREMKLKS\SQLEXPRESS;Database=TechCheckDB;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;";
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connString))
+                using var conn = new SqlConnection(connString);
+                conn.Open();
+
+                const string query = "SELECT Role FROM Users WHERE Username=@user AND Password=@pass";
+                using var cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@user", txtUser.Text.Trim());
+                cmd.Parameters.AddWithValue("@pass", txtPass.Text.Trim());
+
+                var result = cmd.ExecuteScalar();
+
+                if (result != null)
                 {
-                    conn.Open();
-                    // Tablo adının SQL'de 'Users' olduğundan emin ol
-                    string query = "SELECT UserRole FROM Users WHERE Username=@user AND Password=@pass";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        // Tasarımdaki kutuların Name özellikleri txtUsername ve txtPassword olmalı
-                        cmd.Parameters.AddWithValue("@user", txtUsername.Text);
-                        cmd.Parameters.AddWithValue("@pass", txtPassword.Text);
-
-                        object result = cmd.ExecuteScalar();
-
-                        if (result != null)
-                        {
-                            string role = result.ToString();
-                            MessageBox.Show($"Hoş geldin! Rolün: {role}", "Giriş Başarılı");
-
-                            if (role == "Admin")
-                            {
-                                // Çözüm gezgininde gördüğüm Dashboard formunu açar
-                                Dashboard adminEkran = new Dashboard();
-                                adminEkran.Show();
-                            }
-                            else if (role == "Technician")
-                            {
-                                // Çözüm gezgininde gördüğüm TeknikerPaneli formunu açar
-                                TeknikerPaneli tekEkran = new TeknikerPaneli();
-                                tekEkran.Show();
-                            }
-
-                            this.Hide();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Kullanıcı adı veya şifre hatalı!", "Hata");
-                        }
-                    }
+                    string role = result.ToString() ?? "User";
+                    MessageBox.Show($"Hoş geldin! Rolün: {role}");
+                    Dashboard dash = new();
+                    dash.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Hatalı giriş!");
                 }
             }
             catch (Exception ex)
             {
-                // Paylaştığın ekran görüntüsündeki hatayı yakalar
-                MessageBox.Show("Sistem Hatası: " + ex.Message, "Bağlantı Sorunu");
+                MessageBox.Show($"Hata: {ex.Message}");
             }
         }
     }

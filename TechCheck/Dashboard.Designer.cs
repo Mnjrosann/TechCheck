@@ -257,7 +257,6 @@
             pnlYeniKayit.ShadowDecoration.CustomizableEdges = customizableEdges24;
             pnlYeniKayit.Size = new Size(973, 648);
             pnlYeniKayit.TabIndex = 1;
-            pnlYeniKayit.Visible = false;
             pnlYeniKayit.Paint += pnlYeniKayit_Paint;
             // 
             // label1

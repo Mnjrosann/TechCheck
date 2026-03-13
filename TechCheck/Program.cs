@@ -8,10 +8,14 @@ namespace TechCheck
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // 1. Önce Login formunu (Form1) bir deðiþken olarak oluþturuyoruz
+            Form1 loginForm = new Form1();
+
+            // 2. Login formunu çalýþtýrýyoruz
+            Application.Run(loginForm);
         }
     }
 }

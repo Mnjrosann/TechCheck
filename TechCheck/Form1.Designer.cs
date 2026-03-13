@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtUsername = new TextBox();
-            txtPassword = new TextBox();
+            txtUser = new TextBox();
+            txtPass = new TextBox();
             button1 = new Button();
             btnLogin = new Button();
             SuspendLayout();
             // 
-            // txtUsername
+            // txtUser
             // 
-            txtUsername.Location = new Point(589, 188);
-            txtUsername.Margin = new Padding(3, 2, 3, 2);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(110, 23);
-            txtUsername.TabIndex = 0;
+            txtUser.Location = new Point(589, 188);
+            txtUser.Margin = new Padding(3, 2, 3, 2);
+            txtUser.Name = "txtUser";
+            txtUser.Size = new Size(110, 23);
+            txtUser.TabIndex = 0;
             // 
-            // txtPassword
+            // txtPass
             // 
-            txtPassword.Location = new Point(589, 231);
-            txtPassword.Margin = new Padding(3, 2, 3, 2);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(110, 23);
-            txtPassword.TabIndex = 1;
+            txtPass.Location = new Point(589, 231);
+            txtPass.Margin = new Padding(3, 2, 3, 2);
+            txtPass.Name = "txtPass";
+            txtPass.Size = new Size(110, 23);
+            txtPass.TabIndex = 1;
             // 
             // button1
             // 
@@ -78,20 +78,19 @@
             ClientSize = new Size(1266, 555);
             Controls.Add(btnLogin);
             Controls.Add(button1);
-            Controls.Add(txtPassword);
-            Controls.Add(txtUsername);
+            Controls.Add(txtPass);
+            Controls.Add(txtUser);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox txtUsername;
-        private TextBox txtPassword;
+        private TextBox txtUser;
+        private TextBox txtPass;
         private Button button1;
         private Button btnLogin;
     }
