@@ -1,0 +1,68 @@
+﻿@model TechCheckWeb.Models.ServiceRecord
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ServiceRecord</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DeviceID" class="control-label"></label>
+                <input asp-for="DeviceID" class="form-control" />
+                <span asp-validation-for="DeviceID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TechnicianID" class="control-label"></label>
+                <input asp-for="TechnicianID" class="form-control" />
+                <span asp-validation-for="TechnicianID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FailureDescription" class="control-label"></label>
+                <input asp-for="FailureDescription" class="form-control" />
+                <span asp-validation-for="FailureDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepairDetails" class="control-label"></label>
+                <input asp-for="RepairDetails" class="form-control" />
+                <span asp-validation-for="RepairDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryDate" class="control-label"></label>
+                <input asp-for="EntryDate" class="form-control" />
+                <span asp-validation-for="EntryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExitDate" class="control-label"></label>
+                <input asp-for="ExitDate" class="form-control" />
+                <span asp-validation-for="ExitDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsChronic" class="control-label"></label>
+                <input asp-for="IsChronic" class="form-control" />
+                <span asp-validation-for="IsChronic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

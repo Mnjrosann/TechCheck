@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TechCheckWeb.Models.ServiceRecord>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Kayıtlar</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DeviceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TechnicianID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FailureDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RepairDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExitDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsChronic)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechnicianID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FailureDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepairDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExitDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsChronic)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RecordID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RecordID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RecordID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
